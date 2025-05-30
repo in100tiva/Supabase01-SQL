@@ -1,0 +1,376 @@
+
+        :root {
+            /* Cores Base (Inspirado no tema "zinc" do Shadcn UI) */
+            --background: hsl(0, 0%, 100%); /* Fundo principal */
+            --foreground: hsl(240, 10%, 3.9%); /* Texto principal */
+
+            --card: hsl(0, 0%, 100%); /* Fundo de cards/elementos */
+            --card-foreground: hsl(240, 10%, 3.9%); /* Texto em cards */
+
+            --popover: hsl(0, 0%, 100%);
+            --popover-foreground: hsl(240, 10%, 3.9%);
+
+            --primary: hsl(240, 5.9%, 10%); /* Cor primária para botões, foco, etc. */
+            --primary-foreground: hsl(0, 0%, 98%); /* Texto em elementos primários */
+
+            --secondary: hsl(240, 4.8%, 95.9%);
+            --secondary-foreground: hsl(240, 5.9%, 10%);
+
+            --muted: hsl(240, 4.8%, 95.9%);
+            --muted-foreground: hsl(240, 3.8%, 46.1%); /* Texto mais suave */
+
+            --accent: hsl(240, 4.8%, 95.9%);
+            --accent-foreground: hsl(240, 5.9%, 10%);
+
+            --destructive: hsl(0, 84.2%, 60.2%); /* Cor para ações destrutivas (ex: deletar) */
+            --destructive-foreground: hsl(0, 0%, 98%);
+
+            --border: hsl(240, 5.9%, 90%); /* Cor da borda */
+            --input: hsl(240, 5.9%, 90%); /* Borda de inputs */
+            --ring: hsl(240, 5.9%, 10%); /* Usado para outline/foco - Ajustado para ser mais visível */
+
+            /* Raio da Borda */
+            --radius: 0.5rem;
+
+            /* Tipografia */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        /* Reset básico e configurações globais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--muted); /* Fundo do corpo um pouco diferente para destacar o container */
+            color: var(--foreground);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px; 
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem; /* Ajustado padding */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem; /* Ajustado margin */
+            /* border-bottom: 1px solid var(--border); */ /* Removida borda para um look mais clean */
+            /* padding-bottom: 1rem; */
+        }
+
+        .header h1 {
+            font-size: 1.75rem; /* Ajustado tamanho */
+            font-weight: 700;
+            color: var(--card-foreground);
+        }
+        
+        /* Bloco de configuração do Supabase */
+        .supabase-config-info {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: hsl(220, 80%, 97%); /* Light blue background */
+            border: 1px solid hsl(220, 70%, 85%); /* Light blue border */
+            border-radius: calc(var(--radius) - 2px);
+            font-size: 0.875rem;
+            color: hsl(220, 50%, 30%);
+        }
+        .supabase-config-info h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: hsl(220, 60%, 40%);
+            margin-bottom: 0.5rem;
+        }
+        .supabase-config-info p {
+            margin-bottom: 0.25rem;
+            line-height: 1.5;
+        }
+        .supabase-config-info a {
+            color: hsl(220, 70%, 50%);
+            text-decoration: underline;
+        }
+        .supabase-config-info a:hover {
+            color: hsl(220, 80%, 40%);
+        }
+        .supabase-config-info pre {
+            background-color: hsl(220, 15%, 25%); /* Darker background for code */
+            color: hsl(220, 20%, 90%);
+            padding: 0.75rem;
+            border-radius: calc(var(--radius) - 4px);
+            font-size: 0.8rem;
+            overflow-x: auto;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Ajustado gap */
+        }
+
+        .input-area {
+            display: flex;
+            flex-direction: column; /* Empilhar input e botões */
+            gap: 0.75rem; 
+        }
+        
+        .input-row { /* Nova div para input e botão Adicionar */
+             display: flex;
+             gap: 0.75rem;
+        }
+
+        .task-input { /* ID: newTaskInput */
+            flex-grow: 1;
+            padding: 0.75rem 1rem; 
+            font-size: 1rem;
+            border: 1px solid var(--input);
+            border-radius: calc(var(--radius) - 2px); 
+            background-color: var(--background);
+            color: var(--foreground);
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .task-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--ring);
+        }
+
+        .task-input::placeholder {
+            color: var(--muted-foreground);
+        }
+
+        .btn { /* Classe base para botões */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.95rem; /* Levemente menor */
+            font-weight: 500;
+            border: none;
+            border-radius: calc(var(--radius) - 2px);
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+            gap: 0.5rem; 
+        }
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .btn-primary { /* ID: addTodoBtn */
+            color: var(--primary-foreground);
+            background-color: var(--primary);
+        }
+        .btn-primary:hover:not(:disabled) {
+            background-color: hsl(240, 5.9%, 20%); 
+        }
+        .btn-primary svg {
+            stroke: var(--primary-foreground);
+        }
+        
+        .btn-secondary { /* ID: suggestSubtasksBtn */
+            color: var(--primary); /* Texto da cor primária */
+            background-color: var(--secondary); /* Fundo secundário */
+            border: 1px solid var(--border); /* Adiciona uma borda sutil */
+        }
+        .btn-secondary:hover:not(:disabled) {
+            background-color: hsl(240, 4.8%, 90%); /* Levemente mais escuro no hover */
+        }
+        .btn-secondary svg {
+            fill: var(--primary); /* Ícone de sugestão preenchido */
+        }
+
+
+        .task-list-container h2 {
+            font-size: 1.25rem; /* Ajustado tamanho */
+            font-weight: 600;
+            color: var(--card-foreground);
+            margin-bottom: 1rem;
+        }
+
+        .task-list { /* ID: todoList */
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem; /* Ajustado padding */
+            background-color: var(--background); 
+            border: 1px solid var(--border);
+            border-radius: calc(var(--radius) - 2px);
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .task-item:hover {
+            background-color: var(--muted);
+        }
+
+        .task-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-grow: 1;
+            overflow: hidden; /* Para evitar que texto longo quebre o layout */
+        }
+
+        .task-checkbox {
+            appearance: none; 
+            width: 18px; /* Ajustado tamanho */
+            height: 18px;
+            border: 2px solid var(--input); /* Usar --input para consistência */
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            flex-shrink: 0; /* Evita que o checkbox encolha */
+        }
+
+        .task-checkbox:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .task-checkbox:checked::before {
+            content: ''; 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z'/%3E%3C/svg%3E");
+            background-size: 10px 10px;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        .task-label {
+            font-size: 0.95rem; /* Ajustado tamanho */
+            color: var(--card-foreground);
+            flex-grow: 1;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .task-item.completed .task-label {
+            text-decoration: line-through;
+            color: var(--muted-foreground);
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--muted-foreground);
+            cursor: pointer;
+            padding: 0.4rem; /* Ajustado padding */
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+            flex-shrink: 0; /* Evita que o botão encolha */
+        }
+
+        .delete-btn svg {
+            stroke: currentColor; 
+        }
+
+        .delete-btn:hover {
+            color: var(--destructive);
+            background-color: hsla(0, 84.2%, 60.2%, 0.1); 
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer p {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+        
+        /* Estilos para mensagens de carregamento e lista vazia */
+        .info-message {
+            color: var(--muted-foreground);
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        /* Estilo para o modal de mensagem (mantido do código anterior) */
+        .message-modal {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateX(-50%) translateY(-20px);
+            font-size: 0.9rem;
+        }
+        .message-modal.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .message-modal.success {
+            background-color: hsl(145, 63%, 90%); /* Light green */
+            color: hsl(145, 63%, 25%); /* Dark green */
+            border: 1px solid hsl(145, 63%, 70%);
+        }
+        .message-modal.error {
+            background-color: hsl(0, 84%, 90%); /* Light red */
+            color: hsl(0, 74%, 30%); /* Dark red */
+            border: 1px solid hsl(0, 84%, 80%);
+        }
+        
+        /* Loading dots (mantido do código anterior) */
+        .loading-dots span {
+            animation: blink 1.4s infinite both;
+            display: inline-block;
+        }
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            20% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
